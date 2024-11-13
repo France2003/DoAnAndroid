@@ -51,6 +51,37 @@
                     android:background="@android:color/transparent"
                     app:srcCompat="@drawable/searchfix" />
             </LinearLayout>
+
+            <com.google.android.material.tabs.TabLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:tabTextColor="@color/white"
+                android:background="#2C9ED6">
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:backgroundTint="#FBFBFB"
+                    android:text="SÁCH" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TÁC GIẢ" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="THỂ LOẠI" />
+            </com.google.android.material.tabs.TabLayout>
+
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SÁCH" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
