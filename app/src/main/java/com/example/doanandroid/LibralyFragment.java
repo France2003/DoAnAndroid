@@ -8,15 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class TacGia extends Fragment {
-    public TacGia() {
 
+public class LibralyFragment extends Fragment {
+    public LibralyFragment() {
+        // Required empty public constructor
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tac_gia, container, false);
+        return inflater.inflate(R.layout.fragment_libraly, container, false);
     }
 }
