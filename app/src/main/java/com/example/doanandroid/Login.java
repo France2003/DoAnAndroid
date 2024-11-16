@@ -33,7 +33,7 @@ public class Login extends AppCompatActivity{
                     startActivity(MyIntent);
 
                 }else{
-                    Toast.makeText(Login.this,"Invalid Usernam",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this,"Invalid Ussername or Password",Toast.LENGTH_SHORT).show();
                 }
 
 
