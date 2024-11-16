@@ -3,11 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
     <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="729dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="30sp"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp">
@@ -27,23 +29,21 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="66dp"
+            android:layout_height="148dp"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textView"
+            <ImageView
+                android:id="@+id/imageView4"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="LOGIN"
-                android:textAlignment="center"
-                android:textSize="34sp"
-                android:textStyle="bold" />
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/_3" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="83dp"
+            android:layout_height="90dp"
             android:orientation="horizontal">
 
             <EditText
@@ -51,11 +51,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:drawableLeft="@drawable/icons8_username_32"
                 android:ems="10"
                 android:hint="Username"
                 android:inputType="text"
-                android:paddingLeft="20sp"
                 android:paddingRight="20sp" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -68,12 +69,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:drawableLeft="@drawable/icons8_password_32"
                 android:ems="10"
                 android:hint="Password"
                 android:inputType="text"
                 android:paddingLeft="20sp"
                 android:paddingEnd="20sp"
-                android:password="false" />
+                android:password="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -86,7 +88,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="LOGIN"
+                android:backgroundTint="#38B5FE"
+                android:text="ĐĂNG NHẬP"
+                android:textColor="#FDF6FE"
                 android:textSize="20sp" />
         </LinearLayout>
     </LinearLayout>
