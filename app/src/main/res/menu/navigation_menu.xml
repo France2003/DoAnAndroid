@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/ThongKe"
+            android:icon="@drawable/analysis"
+            android:title="Thống Kê" />
+    </group>
+    <!-- Spacer -->
+    <item android:title="" />
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/Muonmua"
+            android:icon="@drawable/shoppingcart"
+            android:title="Muốn mua" />
+    </group>
+    <item android:title="" />
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/SaoLuu"
+            android:icon="@drawable/saoluu"
+            android:title="Sao Lưu" />
+    </group>
+    <!-- Spacer -->
+    <item android:title="" />
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/Khoiphuc"
+            android:icon="@drawable/backintime"
+            android:title="Khôi Phục"
+            />
+    </group>
+    <item android:title="" />
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/NhapTep"
+            android:icon="@drawable/upload"
+            android:title="Nhập Tệp"
+            />
+    </group>
+    <item android:title="" />
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/XuatTep"
+            android:icon="@drawable/download"
+            android:title="Xuất Tệp"
+
+            />
+    </group>
+    <item android:title="" />
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/Setting"
+            android:icon="@drawable/settings"
+            android:title="Cài Đặt"
+            />
+    </group>
+
+</menu>

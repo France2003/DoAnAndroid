@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    app:startDestination="@id/libralyFragment">
+
+    <fragment
+        android:id="@+id/libralyFragment"
+        android:name="com.example.doanandroid.LibralyFragment"
+        android:label="fragment_libraly"
+        tools:layout="@layout/fragment_libraly" />
+</navigation>

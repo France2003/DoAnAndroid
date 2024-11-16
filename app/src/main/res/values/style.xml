@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CustomTabText" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">20sp</item> <!-- Thay đổi kích thước chữ -->
+        <item name="android:textColor">#FFFFFF</item>
+        <!-- Màu chữ của tab -->
+    </style>
+    <style name="MenuTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">20sp</item> <!-- Thay đổi kích thước chữ -->
+        <item name="android:textColor">@color/black</item>
+        <item name="android:layout_marginTop">25dp</item> <!-- Adjust top padding -->
+        <item name="android:paddingBottom">25dp</item>
+    </style>
+</resources>
