@@ -68,6 +68,7 @@
                 app:tabTextColor="@color/tab_unselected_text_color">
 
                 <com.google.android.material.tabs.TabItem
+                    android:id="@+id/idBook"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -75,11 +76,13 @@
                     android:text="SÁCH" />
 
                 <com.google.android.material.tabs.TabItem
+                    android:id="@+id/idTacGia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TÁC GIẢ" />
 
                 <com.google.android.material.tabs.TabItem
+                    android:id="@+id/idTheLoai"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="THỂ LOẠI" />
