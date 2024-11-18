@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Cap nhat tac gia"
+                android:text="Them tac gia"
                 android:textAlignment="center"
                 android:textSize="48sp"
                 android:textStyle="bold" />
@@ -39,7 +39,7 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/edittentacgia"
+                android:id="@+id/edituptentacgia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -61,7 +61,7 @@
                 app:srcCompat="@drawable/cute_colorful_playful_japanese_food_circle_logo" />
 
             <EditText
-                android:id="@+id/editnamsinh"
+                android:id="@+id/editupnamsinh"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -78,7 +78,7 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/edittttacgia"
+                android:id="@+id/edituptttacgia"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -95,7 +95,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btnHuy"
+                android:id="@+id/btnupHuy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -103,7 +103,7 @@
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/btnThem"
+                android:id="@+id/btnupThem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
