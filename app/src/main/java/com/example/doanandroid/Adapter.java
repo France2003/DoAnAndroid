@@ -20,10 +20,12 @@ import java.util.List;
 
 public class Adapter extends ArrayAdapter<Book> {
     private Context context;
+    private Sach sachFragment;
 
-    public Adapter(Context context, List<Book> books) {
+    public Adapter(Context context, List<Book> books, Sach sachFragment) {
         super(context, 0, books);
         this.context = context; // Lưu lại context
+        this.sachFragment = sachFragment;
     }
 
     @Override
@@ -55,10 +57,7 @@ public class Adapter extends ArrayAdapter<Book> {
 //                            Toast.makeText(getContext(), "Bạn chọn Update", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(context, UpdateBook.class);
                             // Truyền dữ liệu qua màn hình khác
-                            intent.putExtra("bookTitle", book.getTitle());
-                            intent.putExtra("bookAuthor", book.getAuthor());
-                            intent.putExtra("bookSoLuong", book.getQuanlity());
-                            intent.putExtra("bookIF", book.getDescription());
+                            intent.putExtra("sachId", book.getId());
                             context.startActivity(intent); // Chạy Activity mới
                             return true;
                         }
@@ -73,9 +72,19 @@ public class Adapter extends ArrayAdapter<Book> {
                             builder.setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    // Thêm logic xử lý nút Xóa
-                                    remove(book); // Xóa sách khỏi danh sách
-                                    notifyDataSetChanged(); // Cập nhật Adapter
+                                    dataBase dbHelper = new dataBase(context, "QuanLiSach.db", null, 1);
+                                    boolean isDeleted = dbHelper.deleteRecord("Sach", "maSach", book.getId());
+                                    if (isDeleted) {
+                                        remove(book); // Xóa sách khỏi danh sách
+                                        notifyDataSetChanged(); // Cập nhật Adapter
+                                        Toast.makeText(context, "Xóa sách thành công", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(context, "Xóa sách thất bại", Toast.LENGTH_SHORT).show();
+                                    }
+
+                                    if (sachFragment != null) {
+                                        sachFragment.loadData();
+                                    }
                                 }
                             });
 

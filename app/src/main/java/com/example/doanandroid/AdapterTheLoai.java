@@ -48,17 +48,17 @@ public class AdapterTheLoai extends ArrayAdapter<Genre> {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         int id = menuItem.getItemId();
-                        if(id == R.id.updateTL){
+                        if (id == R.id.updateTL) {
+                            // Truyền ID khi sửa thể loại
                             Intent intent = new Intent(context, UpdateTheLoai.class);
+                            intent.putExtra("idGenre", genre.getId()); // Truyền ID vào Intent
                             intent.putExtra("TitleGenre", genre.getTitleTL());
-                            intent.putExtra("SoLuongBook", genre.getQuanlityTL());
                             context.startActivity(intent);
                             return true;
-                        }
-                        else if(id == R.id.deleteTL){
+                        } else if (id == R.id.deleteTL) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(context);
                             builder.setTitle("Thông tin thể loại");
-                            builder.setMessage("Bạn có muốn thực hiện hành động với thể loại này?\n\n" +
+                            builder.setMessage("Bạn chắc chắn muốn xóa Thể Loại này?\n\n" +
                                     "Thể loại: " + genre.getTitleTL() + "\n" +
                                     "Số lượng: " + genre.getQuanlityTL());
 
@@ -66,9 +66,16 @@ public class AdapterTheLoai extends ArrayAdapter<Genre> {
                             builder.setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    // Thêm logic xử lý nút Xóa
-                                    remove(genre); // Xóa sách khỏi danh sách
-                                    notifyDataSetChanged(); // Cập nhật Adapter
+                                    // Logic xóa thể loại (có thể dùng ID để xóa)
+                                    dataBase dbHelper = new dataBase(context, "QuanLiSach.db", null, 1);
+                                    boolean isDeleted = dbHelper.deleteRecord("TheLoai", "maTheLoai", genre.getId());
+                                    if (isDeleted) {
+                                        remove(genre); // Xóa sách khỏi danh sách
+                                        notifyDataSetChanged(); // Cập nhật Adapter
+                                        Toast.makeText(context, "Xóa thể loại thành công", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(context, "Xóa thể loại thất bại", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
                             });
 
@@ -90,4 +97,5 @@ public class AdapterTheLoai extends ArrayAdapter<Genre> {
         });
         return convertView;
     }
+
 }

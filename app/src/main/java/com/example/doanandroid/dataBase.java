@@ -8,6 +8,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class dataBase extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "QuanLiSach.db";
     private static final int DATABASE_VERSION = 1;
@@ -18,6 +21,7 @@ public class dataBase extends SQLiteOpenHelper {
     public static final String COLUMN_TENSACH = "ten";
     public static final String COLUMN_SOLUONG = "soLuong";
     public static final String COLUMN_NAMXB = "namXB";
+    public static final String COLUMN_TTS = "thongTinSach";
 
     // Table: Sach
     public static final String TABLE_TACGIA = "TacGia";
@@ -42,8 +46,10 @@ public class dataBase extends SQLiteOpenHelper {
         String CREATE_SACH_TABLE = "CREATE TABLE " + TABLE_SACH + " (" +
                 COLUMN_SACHID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_TENSACH + " TEXT NOT NULL, " +
-                COLUMN_TACGIAID + " TEXT NOT NULL," +   COLUMN_THELOAIID + " TEXT NOT NULL, " +
-                COLUMN_SOLUONG + " INT NOT NULL,"+   COLUMN_NAMXB + " TEXT NOT NULL,"+
+                COLUMN_TACGIAID + " INTEGER NOT NULL," +
+                COLUMN_THELOAIID + " INTEGER NOT NULL, " +
+                COLUMN_SOLUONG + " INTEGER NOT NULL,"+
+                COLUMN_TTS + " TEXT NOT NULL,"+
                 "FOREIGN KEY("+COLUMN_TACGIAID+")REFERENCES " +TABLE_TACGIA+"("+COLUMN_TACGIAID+"),"
                 +
                 "FOREIGN KEY("+COLUMN_THELOAIID+")REFERENCES " +TABLE_THELOAI+"("+COLUMN_THELOAIID+"))";
@@ -70,28 +76,28 @@ public class dataBase extends SQLiteOpenHelper {
 
     }
     //them sach
-    public boolean insertSach(String name, Integer soLuong , String namXB , String tacgia,String theLoai){
+    public boolean insertSach(String name, int soLuong  , int tacgia,int theLoai,String info){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_TENSACH, name);
         values.put(COLUMN_SOLUONG, soLuong);
-        values.put(COLUMN_NAMXB, namXB);
         values.put(COLUMN_TACGIAID, tacgia);
         values.put(COLUMN_THELOAIID, theLoai);
+        values.put(COLUMN_TTS,info);
 
         long result = db.insert(TABLE_SACH, null, values);
         db.close();
         return result != -1; // Nếu kết quả là -1, việc chèn đã thất bại.
     }
     //update Sách
-    public boolean updateSach(int sachId, String name, Integer soLuong, String namXB, String tacgia, String theLoai) {
+    public boolean updateSach(int sachId,String name, int soLuong  , int tacgia,int theLoai,String info) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_TENSACH, name);
         values.put(COLUMN_SOLUONG, soLuong);
-        values.put(COLUMN_NAMXB, namXB);
         values.put(COLUMN_TACGIAID, tacgia);
         values.put(COLUMN_THELOAIID, theLoai);
+        values.put(COLUMN_TTS,info);
 
         // Cập nhật dựa trên maSach
         int result = db.update(TABLE_SACH, values, COLUMN_SACHID + " = ?", new String[]{String.valueOf(sachId)});
@@ -164,6 +170,112 @@ public class dataBase extends SQLiteOpenHelper {
     public Cursor getRecordById(String tableName, String idColumn, int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT * FROM " + tableName + " WHERE " + idColumn + " = ?", new String[]{String.valueOf(id)});
+    }
+    public int getBooksCountByGenre(String genreName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT COUNT(*) FROM Sach WHERE maTheLoai = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{genreName});
+        int count = 0;
+        if (cursor.moveToFirst()) {
+            count = cursor.getInt(0); // Lấy số lượng sách
+        }
+        cursor.close();
+        return count;
+    }
+    public int countSoLuong(String tableName){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT COUNT(*) FROM "+tableName;
+        Cursor cursor = db.rawQuery(query,null);
+        int count = 0;
+        if (cursor.moveToFirst()) {
+            count = cursor.getInt(0);
+        }
+        cursor.close();
+        return count;
+    }
+
+    public List<String> getAllTacGiaNames() {
+        List<String> tacGiaNames = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT tenTacGia FROM TacGia", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                tacGiaNames.add(cursor.getString(0)); // Lấy tên tác giả
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return tacGiaNames;
+    }
+
+    public List<String> getAllTheLoaiNames() {
+        List<String> theLoaiNames = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT tenTheLoai FROM TheLoai", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                theLoaiNames.add(cursor.getString(0));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return theLoaiNames;
+    }
+
+    // Lấy ID từ tên tác giả
+    public Integer getTacGiaID(String tenTacGia) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Integer tacGiaID = null;
+        Cursor cursor = db.rawQuery("SELECT " + COLUMN_TACGIAID + " FROM " + TABLE_TACGIA +
+                        " WHERE " + COLUMN_TENTACGIA + " = ?",
+                new String[]{tenTacGia});
+        if (cursor.moveToFirst()) {
+            tacGiaID = cursor.getInt(0); // Lấy giá trị ID từ cột đầu tiên
+        }
+        cursor.close();
+        db.close();
+        return tacGiaID;
+    }
+    public String getTacGia(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String tacGia = "";
+        Cursor cursor = db.rawQuery("SELECT " + COLUMN_TENTACGIA + " FROM " + TABLE_TACGIA +
+                        " WHERE " + COLUMN_TACGIAID + " = ?",
+                new String[]{id});
+        if (cursor.moveToFirst()) {
+            tacGia = cursor.getString(0);
+        }
+        cursor.close();
+        db.close();
+        return tacGia;
+    }
+
+    // Lấy ID từ tên thể loại
+    public Integer getTheLoaiID(String tenTheLoai) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Integer theLoaiID = null;
+        Cursor cursor = db.rawQuery("SELECT " + COLUMN_THELOAIID + " FROM " + TABLE_THELOAI +
+                        " WHERE " + COLUMN_TENTHELOAI + " = ?",
+                new String[]{tenTheLoai});
+        if (cursor.moveToFirst()) {
+            theLoaiID = cursor.getInt(0);
+        }
+        cursor.close();
+        db.close();
+        return theLoaiID;
+    }
+    public String getTheLoai(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String theLoai = "";
+        Cursor cursor = db.rawQuery("SELECT " + COLUMN_TENTHELOAI  + " FROM " + TABLE_THELOAI +
+                        " WHERE " + COLUMN_THELOAIID + " = ?",
+                new String[]{id});
+        if (cursor.moveToFirst()) {
+            theLoai = cursor.getString(0);
+        }
+        cursor.close();
+        db.close();
+        return theLoai;
     }
 
 }
