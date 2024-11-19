@@ -1,6 +1,9 @@
 package com.example.doanandroid;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +16,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -22,17 +26,24 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class Sach extends Fragment {
     private FloatingActionButton floatingActionButton;
     private FloatingActionButton toolBar;
+    SQLiteDatabase ThuVien;
+    EditText name;
+
 
     public Sach() {
         // Required empty public constructor
+
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_sach, container, false);
         floatingActionButton = view.findViewById(R.id.fab_home);
         toolBar = view.findViewById(R.id.imageButton1);
+        name = view.findViewById(R.id.idBook);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,6 +51,10 @@ public class Sach extends Fragment {
                 showAddDialog();
             }
         });
+
+
+
+
         //Toolbar
         toolBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +101,7 @@ public class Sach extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // Get data from dialog fields and handle the logic for adding new data
+
             }
         });
 

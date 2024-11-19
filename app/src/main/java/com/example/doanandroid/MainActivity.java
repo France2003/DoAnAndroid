@@ -11,7 +11,9 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.DialogInterface;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -30,6 +32,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //sql
+
+
         //Ánh xạ
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);  // This should be TabLayout, not TableLayout
         viewPager = (ViewPager) findViewById(R.id.viewpager);
