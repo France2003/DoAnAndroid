@@ -6,5 +6,9 @@
     <color name="tab_unselected_text_color">#90A4AE</color> <!-- Màu khi tab không được chọn -->
     <color name="tab_selected_background">#FFFFFFFF</color> <!-- Màu nền mặc định của Tab -->
     <color name="tab_unselected_background">#FBFBFB</color>
-
+    <color name="red">#F44336</color>
+    <color name="gray_light">#E0E0E0</color>
+    <color name="blue">#2196F3</color>
+    <color name="button_cancel_bg">#9E9E9E</color>
+    <color name="button_delete_bg">#D32F2F</color>
 </resources>

@@ -92,15 +92,15 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
         public BookViewHolder(@NonNull View itemView) {
             super(itemView);
-            titleTextView = itemView.findViewById(R.id.book_title1);
-            authorTextView = itemView.findViewById(R.id.book_author1);
-            menuIcon = itemView.findViewById(R.id.imageButton1);
-            titleTextView = itemView.findViewById(R.id.book_title2);
-            authorTextView = itemView.findViewById(R.id.book_author2);
-            menuIcon = itemView.findViewById(R.id.imageButton1);
-            titleTextView = itemView.findViewById(R.id.book_title3);
-            authorTextView = itemView.findViewById(R.id.book_author3);
-            menuIcon = itemView.findViewById(R.id.imageButton1);
+//            titleTextView = itemView.findViewById(R.id.book_title1);
+//            authorTextView = itemView.findViewById(R.id.book_author1);
+//            menuIcon = itemView.findViewById(R.id.imageButton1);
+//            titleTextView = itemView.findViewById(R.id.book_title2);
+//            authorTextView = itemView.findViewById(R.id.book_author2);
+//            menuIcon = itemView.findViewById(R.id.imageButton1);
+//            titleTextView = itemView.findViewById(R.id.book_title3);
+//            authorTextView = itemView.findViewById(R.id.book_author3);
+//            menuIcon = itemView.findViewById(R.id.imageButton1);
         }
     }
 }

@@ -4,13 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#20649F"
+    android:backgroundTint="#73B3F3"
     android:fitsSystemWindows="true">
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:background="@drawable/edittext_border"
         android:layout_height="match_parent"
         android:layout_margin="30sp"
         android:orientation="vertical"
+
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp">
 
@@ -49,9 +53,11 @@
             <EditText
                 android:id="@+id/editUser"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="63dp"
                 android:layout_weight="1"
+                android:background="@drawable/edittext_border"
                 android:drawableLeft="@drawable/icons8_username_32"
+                android:drawableTint="@color/black"
                 android:ems="10"
                 android:hint="Username"
                 android:inputType="text"
@@ -67,14 +73,15 @@
             <EditText
                 android:id="@+id/editPass"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="63dp"
                 android:layout_weight="1"
                 android:drawableLeft="@drawable/icons8_password_32"
                 android:ems="10"
+                android:background="@drawable/edittext_border"
+                android:drawableTint="@color/black"
                 android:hint="Password"
                 android:inputType="text"
-                android:paddingLeft="20sp"
-                android:paddingEnd="20sp"
+
                 android:password="true" />
         </LinearLayout>
 
@@ -86,7 +93,7 @@
             <Button
                 android:id="@+id/btnLogin"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="63dp"
                 android:layout_weight="1"
                 android:backgroundTint="#38B5FE"
                 android:text="ĐĂNG NHẬP"
