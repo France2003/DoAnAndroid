@@ -13,6 +13,9 @@
         android:theme="@style/Theme.DoAnAndroid"
         tools:targetApi="31">
         <activity
+            android:name=".AddTacgia"
+            android:exported="false" />
+        <activity
             android:name=".MainActivityMenu"
             android:exported="false"
             android:label="@string/title_activity_main_menu"
