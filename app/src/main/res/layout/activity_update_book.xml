@@ -50,20 +50,27 @@
                 android:textColorHint="#2E2E2E"
                 android:textSize="24sp" />
 
-            <EditText
-                android:id="@+id/upTacGia"
+            <Spinner
+                android:id="@+id/spinnerTacGia"
                 android:layout_width="358dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
-
                 android:background="@drawable/edittext_border"
-                android:ems="10"
-                android:hint="Tên tác giả"
-                android:inputType="text"
                 android:padding="15dp"
-                android:textColorHint="#2E2E2E"
+                android:spinnerMode="dropdown"
                 android:textSize="24sp" />
+            <Spinner
+                android:id="@+id/spinnerTheLoai"
+                android:layout_width="358dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edittext_border"
+                android:padding="15dp"
+                android:spinnerMode="dropdown"
+                android:textSize="24sp" />
+
 
             <LinearLayout
                 android:layout_width="358dp"
