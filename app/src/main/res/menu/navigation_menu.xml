@@ -34,26 +34,17 @@
     <item android:title="" />
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/NhapTep"
-            android:icon="@drawable/upload"
-            android:title="Nhập Tệp"
-            />
-    </group>
-    <item android:title="" />
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/XuatTep"
-            android:icon="@drawable/download"
-            android:title="Xuất Tệp"
-
-            />
-    </group>
-    <item android:title="" />
-    <group android:checkableBehavior="single">
-        <item
             android:id="@+id/Setting"
             android:icon="@drawable/settings"
             android:title="Cài Đặt"
+            />
+    </group>
+    <item android:title="" />
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/checkout"
+            android:icon="@drawable/checkout"
+            android:title="Đăng Xuất"
             />
     </group>
 
