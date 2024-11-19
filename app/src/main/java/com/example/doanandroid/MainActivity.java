@@ -12,8 +12,13 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.DialogInterface;
+
 import android.content.Intent;
+
+import android.database.sqlite.SQLiteDatabase;
+
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -36,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //sql
+
+
         //Ánh xạ
         ImageButton btnSearch = findViewById(R.id.btnSearch);
         EditText editTextSearch = findViewById(R.id.editTextSearch);
