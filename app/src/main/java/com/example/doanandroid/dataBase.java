@@ -24,6 +24,7 @@ public class dataBase extends SQLiteOpenHelper {
     public static final String COLUMN_TACGIAID = "maTacGia";
     public static final String COLUMN_TENTACGIA = "tenTacGia";
     public static final String COLUMN_NAMSINH = "namSinh";
+    public static final String COLUMN_INFO = "thongTin";
 
     // Table: Sach
     public static final String TABLE_THELOAI = "TheLoai";
@@ -47,12 +48,15 @@ public class dataBase extends SQLiteOpenHelper {
                 +
                 "FOREIGN KEY("+COLUMN_THELOAIID+")REFERENCES " +TABLE_THELOAI+"("+COLUMN_THELOAIID+"))";
         db.execSQL(CREATE_SACH_TABLE);
+
         // Create table tacgia
         String CREATE_TACGIA_TABLE = "CREATE TABLE " + TABLE_TACGIA + " (" +
                 COLUMN_TACGIAID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_TENTACGIA + " TEXT NOT NULL, " +
+                COLUMN_INFO + " TEXT, " +
                 COLUMN_NAMSINH + " TEXT NOT NULL)";
         db.execSQL(CREATE_TACGIA_TABLE);
+
         // Create table theloai
         String CREATE_THELOAI_TABLE = "CREATE TABLE " + TABLE_THELOAI + " (" +
                 COLUMN_THELOAIID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -97,11 +101,12 @@ public class dataBase extends SQLiteOpenHelper {
     }
 
     //them TACGIA
-    public boolean insertTacGia(String name, String namsinh ){
+    public boolean insertTacGia(String name, String namsinh,String info ){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_TENTACGIA, name);
         values.put(COLUMN_NAMSINH, namsinh);
+        values.put(COLUMN_INFO, info);
 
         long result = db.insert(TABLE_TACGIA, null, values);
         db.close();
