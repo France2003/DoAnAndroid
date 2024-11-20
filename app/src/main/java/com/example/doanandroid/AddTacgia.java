@@ -1,5 +1,6 @@
 package com.example.doanandroid;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +14,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class AddTacgia extends AppCompatActivity {
+
+    EditText addTenTG, addYearTG, addInformationTG;
+    Button btnHuyTG, btnThemTG;
     EditText name,year,infomation;
     Button btnSave;
     @Override
@@ -20,11 +24,30 @@ public class AddTacgia extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_add_tacgia);
+        addTenTG = findViewById(R.id.addTacGia);
+        addYearTG = findViewById(R.id.addYearTG);
+        addInformationTG = findViewById(R.id.addInformationTG);
+        btnHuyTG = findViewById(R.id.btnHuyTG);
+        btnThemTG = findViewById(R.id.btnThemTG);
+        //
+        btnHuyTG.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentHuy = new Intent(AddTacgia.this, TacGiaa.class);
+                startActivity(intentHuy);
+            }
+        });
+        btnThemTG.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-        name = findViewById(R.id.edittentacgia);
-        year = findViewById(R.id.editnamsinh);
-        infomation = findViewById(R.id.edittttacgia);
-        btnSave =  findViewById(R.id.btnThem);
+            }
+        });
+
+        name = findViewById(R.id.addTacGia);
+        year = findViewById(R.id.addYearTG);
+        infomation = findViewById(R.id.addInformationTG);
+        btnSave =  findViewById(R.id.btnThemTG);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,6 +84,5 @@ public class AddTacgia extends AppCompatActivity {
                 }
             }
         });
-
     }
 }
