@@ -25,7 +25,7 @@
                 android:layout_width="412dp"
                 android:layout_height="92dp"
                 android:gravity="center_vertical"
-                android:text="Cập Nhật Tác Giả"
+                android:text="Thông Tin Tác Giả"
                 android:textAlignment="center"
                 android:textSize="34sp" />
         </LinearLayout>
@@ -36,8 +36,8 @@
             android:layout_marginTop="20dp"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/upNameTacGia"
+            <TextView
+                android:id="@+id/IFNameTacGia"
                 android:layout_width="358dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
@@ -64,8 +64,8 @@
                     android:layout_weight="1"
                     app:srcCompat="@drawable/books1" />
 
-                <EditText
-                    android:id="@+id/upYearTG"
+                <TextView
+                    android:id="@+id/IFYearTG"
                     android:layout_width="160dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -79,8 +79,8 @@
                     android:textSize="24sp" />
             </LinearLayout>
 
-            <EditText
-                android:id="@+id/upInformationTG"
+            <TextView
+                android:id="@+id/IFInformationTG"
                 android:layout_width="358dp"
                 android:layout_height="202dp"
                 android:layout_marginLeft="35dp"
@@ -102,20 +102,11 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/btnHuyUpTG"
+                    android:id="@+id/btnCancelTG"
                     android:layout_width="179dp"
                     android:layout_height="68dp"
                     android:layout_weight="1"
-                    android:text="HỦY"
-                    android:textSize="16sp" />
-
-                <Button
-                    android:id="@+id/btnUpdateTG"
-                    android:layout_width="179dp"
-                    android:layout_height="68dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_weight="1"
-                    android:text="CẬP NHẬT"
+                    android:text="THOÁT"
                     android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
