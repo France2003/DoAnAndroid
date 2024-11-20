@@ -73,6 +73,7 @@
                     android:layout_marginLeft="15dp"
                     android:layout_weight="1"
                     android:text="CẬP NHẬT THỂ LOẠI"
+
                     android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>

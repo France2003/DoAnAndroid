@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 
 
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import android.os.Bundle;
@@ -28,6 +29,7 @@ import android.widget.ListView;
 import android.widget.EditText;
 
 import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -41,6 +43,7 @@ public class Sach extends Fragment {
 
     private ImageButton imageMenu;
     private ListView listBook;
+    private TextView count;
 
     private FloatingActionButton toolBar;
     SQLiteDatabase ThuVien;
@@ -65,10 +68,9 @@ public class Sach extends Fragment {
         //
         listBook = view.findViewById(R.id.listBook);
         List<Book> books = new ArrayList<>();
-        books.add(new Book("Title 1", "Author 1", '5', "Lên bcc"));
-        books.add(new Book("Title 2", "Author 2", '2', "m mmaans"));
-        Adapter adapter = new Adapter(requireContext(), books);
+        Adapter adapter = new Adapter(requireContext(), books, Sach.this);
         listBook.setAdapter(adapter);
+        count = view.findViewById(R.id.viewSL);
         //
 
         //MenuDots
@@ -83,6 +85,8 @@ public class Sach extends Fragment {
 //        toolBar = view.findViewById(R.id.imageButton1);
 
         name = view.findViewById(R.id.idBook);
+        // Load dữ liệu ban đầu
+        loadData();
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,40 +99,45 @@ public class Sach extends Fragment {
         return view;
     }
 
-
-
-
-
-//        //Toolbar
-//        toolBar.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                PopupMenu popupMenu = new PopupMenu(requireContext(), view); // Sử dụng requireContext()
-//                popupMenu.getMenuInflater().inflate(R.menu.book_menu, popupMenu.getMenu());
-//                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-//                    @Override
-//                    public boolean onMenuItemClick(MenuItem menuItem) {
-//                        int id = menuItem.getItemId();
-//
-//                        if (id == R.id.update) {
-//                            // Logic cho "Update"
-//                            Toast.makeText(getActivity().getApplicationContext(), "Update Clicked!", Toast.LENGTH_SHORT).show();
-//                        } else if (id == R.id.delete) {
-//                            // Logic cho "Delete"
-//                            Toast.makeText(getActivity().getApplicationContext(), "Delete Clicked!", Toast.LENGTH_SHORT).show();
-//                        } else if (id == R.id.information) {
-//                            // Logic cho "Information"
-//                            Toast.makeText(getActivity().getApplicationContext(), "Information Clicked!", Toast.LENGTH_SHORT).show();
-//                        }
-//                        return true; // Đã xử lý
-//                    }
-//                });
-//                popupMenu.show();
-//            }
-//        });
-//
-//        return view;
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Tải lại dữ liệu mỗi khi người dùng quay lại fragment
+        loadData();
     }
+
+    public void loadData() {
+        dataBase dbHelper = new dataBase(requireContext(), "QuanLiSach.db", null, 1);
+        Cursor cursor = dbHelper.getAllRecords("Sach");
+        int sl = 0;
+        sl = dbHelper.countSoLuong("Sach");
+        count.setText(String.valueOf(sl));
+        List<Book> book = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            do {
+                @SuppressLint("Range")
+                int id = cursor.getInt(cursor.getColumnIndex("maSach")); // Lấy ID
+                @SuppressLint("Range")
+                String name = cursor.getString(cursor.getColumnIndex("ten"));
+                @SuppressLint("Range")
+                String tacgia =cursor.getString(cursor.getColumnIndex("maTacGia"));
+                String NameTG = dbHelper.getTacGia(tacgia);
+//
+//                int so = dbHelper.getBooksCountByGenre(name);
+
+                book.add(new Book(id,name, NameTG));
+            } while (cursor.moveToNext());
+        } else {
+            Toast.makeText(requireContext(), "No data found", Toast.LENGTH_SHORT).show();
+        }
+
+        cursor.close();
+
+        // Cập nhật lại adapter với dữ liệu mới
+        Adapter adapterSach= new Adapter(requireContext(), book,Sach.this);
+        listBook.setAdapter(adapterSach);
+    }
+}
 
 
 
