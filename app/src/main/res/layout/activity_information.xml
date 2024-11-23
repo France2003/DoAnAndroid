@@ -49,6 +49,19 @@
                 android:padding="15dp"
                 android:textColorHint="#2E2E2E"
                 android:textSize="24sp" />
+            <TextView
+                android:id="@+id/ifTheLoaiBook"
+                android:layout_width="358dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edittext_border"
+                android:ems="10"
+                android:hint="Thể loại sách"
+                android:inputType="text"
+                android:padding="15dp"
+                android:textColorHint="#2E2E2E"
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/ifTacGia"
@@ -98,7 +111,7 @@
             <TextView
                 android:id="@+id/ifInformation"
                 android:layout_width="353dp"
-                android:layout_height="202dp"
+                android:layout_height="155dp"
                 android:layout_marginLeft="35dp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/edittext_border"
@@ -126,6 +139,7 @@
                     android:background="@drawable/btn_huy_background"
                     android:textSize="16sp" />
             </LinearLayout>
+
         </LinearLayout>
 
 

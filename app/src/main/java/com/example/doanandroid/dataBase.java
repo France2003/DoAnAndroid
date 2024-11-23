@@ -119,11 +119,13 @@ public class dataBase extends SQLiteOpenHelper {
         return result != -1; // Nếu kết quả là -1, việc chèn đã thất bại.
     }
     //update tacgia
-    public boolean updateTacGia(int tacGiaId, String name, String namSinh) {
+    public boolean updateTacGia(int tacGiaId, String name, String namSinh,String info) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_TENTACGIA, name);
         values.put(COLUMN_NAMSINH, namSinh);
+        values.put(COLUMN_INFO, info);
+
 
         // Cập nhật dựa trên maTacGia
         int result = db.update(TABLE_TACGIA, values, COLUMN_TACGIAID + " = ?", new String[]{String.valueOf(tacGiaId)});

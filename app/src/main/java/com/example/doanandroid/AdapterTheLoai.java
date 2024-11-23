@@ -18,10 +18,11 @@ import java.util.List;
 
 public class AdapterTheLoai extends ArrayAdapter<Genre> {
     private Context context;
-
-    public AdapterTheLoai(Context context, List<Genre> genres) {
+    private TheLoai theloaiFragment;
+    public AdapterTheLoai(Context context, List<Genre>genres,TheLoai theloaiFragment ) {
         super(context, 0, genres);
         this.context = context;
+        this.theloaiFragment = theloaiFragment;
     }
 
     @Override
@@ -75,6 +76,9 @@ public class AdapterTheLoai extends ArrayAdapter<Genre> {
                                         Toast.makeText(context, "Xóa thể loại thành công", Toast.LENGTH_SHORT).show();
                                     } else {
                                         Toast.makeText(context, "Xóa thể loại thất bại", Toast.LENGTH_SHORT).show();
+                                    }
+                                    if (theloaiFragment != null) {
+                                        theloaiFragment.loadData();
                                     }
                                 }
                             });

@@ -3,12 +3,12 @@ package com.example.doanandroid;
 public class Author {
     private String titleAuthor;
     private String yearAuthor;
-    private String informationAuthor;
+    private int id;
 
-    public Author(String titleAuthor, String yearAuthor, String informationAuthor) {
+    public Author(String titleAuthor, String yearAuthor, int id) {
         this.titleAuthor = titleAuthor;
         this.yearAuthor = yearAuthor;
-        this.informationAuthor = informationAuthor;
+        this.id = id;
     }
 
     public String getTitleAuthor() {
@@ -19,8 +19,12 @@ public class Author {
         return yearAuthor;
     }
 
-    public String getInformationAuthor() {
-        return informationAuthor;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
 
