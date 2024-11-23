@@ -63,7 +63,7 @@ public class TheLoai extends Fragment {
         // Tải lại dữ liệu mỗi khi người dùng quay lại fragment
         loadData();
     }
-    private void loadData() {
+    public void loadData() {
         dataBase dbHelper = new dataBase(requireContext(), "QuanLiSach.db", null, 1);
         Cursor cursor = dbHelper.getAllRecords("TheLoai");
         int sl = 0;
@@ -88,7 +88,7 @@ public class TheLoai extends Fragment {
         cursor.close();
 
         // Cập nhật lại adapter với dữ liệu mới
-        AdapterTheLoai adapterTheLoai = new AdapterTheLoai(requireContext(), genres);
+        AdapterTheLoai adapterTheLoai = new AdapterTheLoai(requireContext(), genres,TheLoai.this);
         listTheLoai.setAdapter(adapterTheLoai);
     }
 

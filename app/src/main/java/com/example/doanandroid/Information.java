@@ -2,7 +2,9 @@ package com.example.doanandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,7 +12,7 @@ import android.widget.TextView;
 
 public class Information extends AppCompatActivity {
     // Khai Báo Biến
-    TextView ifBook, ifTacGia, ifSoLuong, ifInformation;
+    TextView ifBook, ifTacGia,ifTheLoai, ifSoLuong, ifInformation;
     Button btnCancel;
 
     @Override
@@ -18,27 +20,19 @@ public class Information extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information);
 
+        int sachId = getIntent().getIntExtra("sachId", -1);
+
         // Ánh xạ TextView
         ifBook = findViewById(R.id.ifBook);
         ifTacGia = findViewById(R.id.ifTacGia);
+        ifTheLoai = findViewById(R.id.ifTheLoaiBook);
         ifSoLuong = findViewById(R.id.ifSoLuong);
         ifInformation = findViewById(R.id.ifInformation);
 
         // Ánh xạ Button
         btnCancel = findViewById(R.id.btnCancel);
 
-        // Lấy dữ liệu từ Intent
-        Intent intent = getIntent();
-        String title = intent.getStringExtra("title");
-        String author = intent.getStringExtra("author");
-        int quantity = intent.getIntExtra("quantity", 0);
-        String description = intent.getStringExtra("description");
-
-        // Hiển thị thông tin sách
-        ifBook.setText("Tên sách: " + title);
-        ifTacGia.setText("Tác giả: " + author);
-        ifSoLuong.setText("Số lượng: " + quantity);
-        ifInformation.setText("Mô tả: " + description);
+        loadBookDetails(sachId);
 
         // Sự kiện nút hủy
         btnCancel.setOnClickListener(new View.OnClickListener() {
@@ -48,5 +42,36 @@ public class Information extends AppCompatActivity {
                 finish();
             }
         });
+
+    }
+    private void loadBookDetails(int sachId) {
+        // Create database helper instance
+        dataBase dbHelper = new dataBase(Information.this, "QuanLiSach.db", null, 1);
+
+        // Fetch book details from the database using getRecordById
+        Cursor cursor = dbHelper.getRecordById("Sach", "maSach", sachId);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            // Retrieve the data from the cursor
+            @SuppressLint("Range") String bookName = cursor.getString(cursor.getColumnIndex("ten"));
+            @SuppressLint("Range") int tacGia = cursor.getInt(cursor.getColumnIndex("maTacGia"));
+            @SuppressLint("Range") int theloai = cursor.getInt(cursor.getColumnIndex("maTheLoai"));
+            @SuppressLint("Range") int soLuong = cursor.getInt(cursor.getColumnIndex("soLuong"));
+            @SuppressLint("Range") String thongTinSach = cursor.getString(cursor.getColumnIndex("thongTinSach"));
+
+            // Fill the data into the corresponding EditText fields
+            ifBook.setText(bookName);
+            ifSoLuong.setText(String.valueOf(soLuong));
+            ifInformation.setText(thongTinSach);
+
+            // select tên thông qua id
+            String nameTG = dbHelper.getTacGia(String.valueOf(tacGia));
+            String nameTL = dbHelper.getTheLoai(String.valueOf(theloai));
+
+            ifTacGia.setText(nameTG);
+            ifTheLoai.setText(nameTL);
+
+            cursor.close(); // Don't forget to close the cursor
+        }
     }
 }

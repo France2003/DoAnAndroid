@@ -12,14 +12,17 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 public class AdapterTacGia extends ArrayAdapter<Author> {
     private Context context;
-    public AdapterTacGia(Context context, List<Author>authors) {
+    private TacGiaa authorFragment;
+    public AdapterTacGia(Context context, List<Author>authors,TacGiaa authorFragment ) {
         super(context, 0, authors);
         this.context = context;
+        this.authorFragment = authorFragment;
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
@@ -48,25 +51,33 @@ public class AdapterTacGia extends ArrayAdapter<Author> {
                         int id = menuItem.getItemId();
                         if(id == R.id.updateAuthor){
                             Intent intent = new Intent(context, UpdateTacGia.class);
-                            intent.putExtra("TitleAuthor", author.getTitleAuthor());
-                            intent.putExtra("YearAuthor", author.getYearAuthor());
-                            intent.putExtra("InformationAuthor", author.getInformationAuthor());
+                            intent.putExtra("idAuthor", author.getId());
                             context.startActivity(intent);
                             return true;
                         }
                         else if(id == R.id.deleteAuthor){
                             AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                            builder.setTitle("Thông tin thể loại");
-                            builder.setMessage("Bạn có muốn thực hiện hành động với thể loại này?\n\n" +
+                            builder.setTitle("Thông tin tác giả");
+                            builder.setMessage("Bạn có muốn thực hiện hành động với tác giả này?\n\n" +
                                     "Tên tác giả: " + author.getTitleAuthor() + "\n" +
                                     "Năm sinh: " + author.getYearAuthor());
                             // Nút Xác nhận
                             builder.setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    // Thêm logic xử lý nút Xóa
-                                    remove(author); // Xóa sách khỏi danh sách
-                                    notifyDataSetChanged(); // Cập nhật Adapter
+                                    // Logic xóa tác giả (có thể dùng ID để xóa)
+                                    dataBase dbHelper = new dataBase(context, "QuanLiSach.db", null, 1);
+                                    boolean isDeleted = dbHelper.deleteRecord("TacGia", "maTacGia", author.getId());
+                                    if (isDeleted) {
+                                        remove(author); // Xóa sách khỏi danh sách
+                                        notifyDataSetChanged(); // Cập nhật Adapter
+                                        Toast.makeText(context, "Xóa tác giả thành công", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(context, "Xóa tác giả thất bại", Toast.LENGTH_SHORT).show();
+                                    }
+                                    if (authorFragment != null) {
+                                        authorFragment.loadData();
+                                    }
                                 }
                             });
                             // Nút Hủy
@@ -82,6 +93,7 @@ public class AdapterTacGia extends ArrayAdapter<Author> {
                         }
                         else if(id == R.id.informationAuthor){
                             Intent intent = new Intent(context, InformationTacGia.class);
+                            intent.putExtra("idAuthor", author.getId());
                             context.startActivity(intent);
                             return true;
                         }

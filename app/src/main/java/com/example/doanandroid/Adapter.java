@@ -102,10 +102,7 @@ public class Adapter extends ArrayAdapter<Book> {
                         else if (id == R.id.information) {
                             Intent intent = new Intent(context, Information.class);
                             // Truyền dữ liệu qua màn hình khác
-//                            intent.putExtra("bookTitle", book.getTitle());
-//                            intent.putExtra("bookAuthor", book.getAuthor());
-//                            intent.putExtra("bookSoLuong", book.getQuanlity());
-//                            intent.putExtra("bookIF", book.getDescription());
+                            intent.putExtra("sachId", book.getId());
                             context.startActivity(intent); // Chạy Activity mới
                             return true;
                         }
